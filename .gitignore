@@ -3,6 +3,7 @@
 .secrets/kubeadminpassword
 .secrets/kubeconfig*
 .secrets/pull-secret*
+.secrets/ocm-api-token
 
 # Mac local filesystem thingy
 .DS_Store
