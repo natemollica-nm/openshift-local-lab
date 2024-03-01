@@ -1,7 +1,8 @@
 # .secrets/ kubeconfig | kubeadminpassword | openshift specific ssh keys
-./.secrets/openshift-key*
-./.secrets/kubeadminpassword
+.secrets/openshift-key*
+.secrets/kubeadminpassword
 .secrets/kubeconfig*
+.secrets/pull-secret*
 
 # Mac local filesystem thingy
 .DS_Store
