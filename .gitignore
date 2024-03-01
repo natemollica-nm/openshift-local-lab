@@ -10,5 +10,6 @@
 # Goland Jetbrains
 .idea
 
-
+# Single Node ISOs
+iso/*.iso
 
