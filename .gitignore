@@ -13,3 +13,5 @@
 # Single Node ISOs
 iso/*.iso
 
+# Single Node Installer cache
+.installer_cache
