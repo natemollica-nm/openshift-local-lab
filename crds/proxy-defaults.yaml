@@ -1,0 +1,10 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ProxyDefaults
+metadata:
+  name: global
+spec:
+  config:
+    envoy_dns_discovery_type: "STRICT_DNS"
+    envoy_stats_bind_addr: "127.0.0.1:21200"
+  meshGateway:
+    mode: local

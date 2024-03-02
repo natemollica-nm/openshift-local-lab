@@ -1,0 +1,23 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: datadog-cluster-agent
+  namespace: "$DD_NS"
+spec:
+  protocol: tcp
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: datadog-agent
+  namespace: "$DD_NS"
+spec:
+  protocol: tcp
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: datadog-operator
+  namespace: "$DD_NS"
+spec:
+  protocol: tcp

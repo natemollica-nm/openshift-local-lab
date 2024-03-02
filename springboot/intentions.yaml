@@ -1,0 +1,28 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: spring-boot-admin-server
+spec:
+  destination:
+    name: spring-boot-admin-server
+    namespace: spring-boot-sba
+  sources:
+    - name: spring-boot-admin-client
+      namespace: spring-boot-sbc
+      action: allow
+    - name: sba-api-gateway
+      namespace: spring-boot-sba
+      action: allow
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: spring-boot-admin-client
+spec:
+  destination:
+    name: spring-boot-admin-client
+    namespace: spring-boot-sbc
+  sources:
+    - name: spring-boot-admin-server
+      namespace: spring-boot-sba
+      action: allow

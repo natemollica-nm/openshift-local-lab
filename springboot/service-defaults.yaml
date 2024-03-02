@@ -1,0 +1,19 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: spring-boot-admin-client
+  namespace: spring-boot-sbc
+spec:
+  protocol: tcp
+  transparentProxy:
+    dialedDirectly: true
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: spring-boot-admin-server
+  namespace: spring-boot-sba
+spec:
+  protocol: tcp
+  transparentProxy:
+    dialedDirectly: true

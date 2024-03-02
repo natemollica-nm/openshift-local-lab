@@ -1,0 +1,34 @@
+apiVersion: v1alpha1
+kind: AgentConfig
+metadata:
+  name: "$OPENSHIFT_CLUSTER"
+rendezvousIP: "$OPENSHIFT_IP"
+hosts:
+    - hostname: "$OPENSHIFT_HOSTNAME"
+      interfaces:
+        - name: "enp0s1"
+          macAddress: "4E:B5:D2:58:F8:56"
+      rootDeviceHints:
+        deviceName: "/dev/vda"
+      networkConfig:
+        interfaces:
+          - name: "enp0s1"
+            type: ethernet
+            state: up
+            mac-address: "4E:B5:D2:58:F8:56"
+            ipv4:
+              enabled: true
+              address:
+                - ip: "$OPENSHIFT_IP"
+                  prefix-length: 23
+              dhcp: false
+        dns-resolver:
+          config:
+            server:
+              - "$HOST_IP"
+        routes:
+          config:
+            - destination: "0.0.0.0/0"
+              next-hop-address: "$GATEWAY"
+              next-hop-interface: "enp0s1"
+              table-id: 254

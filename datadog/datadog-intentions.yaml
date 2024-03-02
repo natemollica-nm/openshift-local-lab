@@ -1,0 +1,74 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: datadog-agent
+  namespace: "$DD_NS"
+spec:
+  destination:
+    name: datadog-agent
+  sources:
+    - name: "*"
+      namespace: "$CONSUL_NS"
+      action: allow
+    - name: "*"
+      namespace: "$DD_NS"
+      action: allow
+    - name: "*"
+      namespace: default
+      action: allow
+    - name: "*"
+      namespace: "$CLIENT_NS"
+      action: allow
+    - name: "*"
+      namespace: "$SERVER_NS"
+      action: allow
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: datadog-cluster-agent
+  namespace: "$DD_NS"
+spec:
+  destination:
+    name: datadog-cluster-agent
+  sources:
+    - name: "*"
+      namespace: "$CONSUL_NS"
+      action: allow
+    - name: "*"
+      namespace: "$DD_NS"
+      action: allow
+    - name: "*"
+      namespace: default
+      action: allow
+    - name: "*"
+      namespace: "$CLIENT_NS"
+      action: allow
+    - name: "*"
+      namespace: "$SERVER_NS"
+      action: allow
+---
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: datadog-operator
+  namespace: "$DD_NS"
+spec:
+  destination:
+    name: datadog-operator
+  sources:
+    - name: "*"
+      namespace: "$CONSUL_NS"
+      action: allow
+    - name: "*"
+      namespace: "$DD_NS"
+      action: allow
+    - name: "*"
+      namespace: default
+      action: allow
+    - name: "*"
+      namespace: "$CLIENT_NS"
+      action: allow
+    - name: "*"
+      namespace: "$SERVER_NS"
+      action: allow

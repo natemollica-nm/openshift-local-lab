@@ -1,0 +1,12 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceResolver
+metadata:
+  name: spring-boot-admin-server
+  namespace: spring-boot-sba
+spec:
+  connectTimeout: 15s
+#  loadBalancer:
+#    policy: "maglev"
+#    hashPolicies:
+#      - field: "header"
+#        fieldValue: "HOST"

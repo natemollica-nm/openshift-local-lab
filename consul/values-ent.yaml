@@ -1,0 +1,89 @@
+global:
+  name: consul
+  peering:
+    enabled: true
+  adminPartitions:
+    enabled: true
+    name: "default"
+  tls:
+    enabled: true
+    enableAutoEncrypt: true
+    verify: true
+    httpsOnly: true
+  ui:
+    enabled: true
+  enterpriseLicense:
+    secretName: license
+    secretKey: key
+    enableLicenseAutoload: true
+  enableConsulNamespaces: true
+  acls:
+    manageSystemACLs: true
+  imagePullSecrets:
+    - name: pull-secret
+  openshift:
+    enabled: true
+  metrics:
+    enabled: false
+
+connectInject:
+  enabled: true
+  replicas: 1
+  affinity: null
+  default: false
+  transparentProxy:
+    defaultEnabled: false
+    defaultOverwriteProbes: false
+  consulNamespaces:
+    mirroringK8S: true
+  apiGateway:
+    manageExternalCRDs: true
+    managedGatewayClass:
+      deployment:
+        defaultInstances: 1
+        maxInstances: 1
+        minInstances: 1
+  cni:
+    enabled: true
+    logLevel: debug
+    namespace: consul
+    multus: true
+    cniBinDir: /var/lib/cni/bin
+    cniNetDir: /etc/kubernetes/cni/net.d
+
+
+meshGateway:
+  enabled: true
+  # Everything below is for k3d
+  service:
+    type: "NodePort"
+    nodePort: "30100"
+
+
+server:
+  enabled: true
+  enableAgentDebug: true
+  replicas: 1
+  affinity: null
+  extraConfig: |
+    {
+      "performance": {
+        "raft_multiplier": 1
+      }
+    }
+
+dns:
+  enabled: true
+  enabledRedirection: true
+  type: ClusterIP
+
+ui:
+  enabled: true
+  ingress:
+    enabled: true
+    annotations: "route.openshift.io/termination: passthrough"
+    pathType: ImplementationSpecific
+    hosts:
+      - host: consul-ui-consul.apps.consul-openshift-sno.openshift.local.io
+        paths:
+          - ""

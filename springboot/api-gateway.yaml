@@ -1,0 +1,25 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: sba-api-gateway
+  namespace: spring-boot-sba
+spec:
+  gatewayClassName: consul
+  listeners:
+    - name: sba-tcp-listener
+      protocol: TCP
+      port: 9080
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              kubernetes.io/metadata.name: spring-boot-sba
+#    - name: spring-boot
+#      protocol: HTTP  # options: HTTP | HTTPS | TCP
+#      port: 9080     # options: OpenShift needs extra permission to set port num < 1024
+#      allowedRoutes:
+#      namespaces:
+#        from: "All"  # options: All or Same or Specific

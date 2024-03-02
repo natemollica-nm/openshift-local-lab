@@ -1,0 +1,52 @@
+spring:
+  config:
+    import: vault://
+  boot:
+    admin:
+      client:
+        url: ${spring-boot-admin-local-url}
+        auto-deregistration: true
+        instance:
+#          service-url: http://issue-handler-${env}.issue-handler-${env}.svc.cluster.local
+#          health-url: http://issue-handler-${env}.issue-handler-${env}.svc.cluster.local/actuator/health
+#          management-url: http://issue-handler-${env}.issue-handler-${env}.svc.cluster.local/actuator
+         service-host-type: ip
+management: #Configures actuator
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, env, sessions, jolokia, caches, prometheus, metrics, threaddump, auditevents, beans, conditions, info, loggers, mappings, scheduledtasks, logfile, bindings, #api-docs, ih
+        exclude: refresh, heapdump, restart, pause, resume, httptrace, httpstrace, configprops, shutdown, features
+      cors:
+        allowed-origins: http://localhost:8080, http://localhost:80, https://localhost:8443, https://localhost:443, ${spring-boot-admin-public-url:""}, ${spring-boot-admin-local-url}
+        allowed-methods: OPTIONS, GET, POST, PUT
+  endpoint:
+    env:
+      show-values: always
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    logfile:
+      enabled: true
+      external-file: /tmp/spring.log
+    loggers:
+      enabled: true
+    jolokia:
+      config:
+        debug: true
+  metrics:
+    circuitbreakers: # More information about resilience actuator endpoints can be found here
+      enabled: true # https://jsession4d.com/a-quick-guide-to-resilience4j-with-spring-boot/
+  health:
+    show-details: WHEN_AUTHORIZED
+  info:
+    env:
+      enabled: true
+info:
+  application-name: ${spring.application.name}
+  active-profiles: ${spring.profiles.active:local}
+  image.version: ${DOCKER_IMAGE_TAG:local}
