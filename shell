@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export OFFLINE_API_TOKEN="$(cat "$(pwd)/.secrets/ocm-api-token")"
+
 eval "$(cat .env)"
 
 exec bash "$@"

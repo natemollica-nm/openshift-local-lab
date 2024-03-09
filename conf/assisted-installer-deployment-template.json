@@ -1,0 +1,15 @@
+{
+  "kind": "Cluster",
+  "name": "$OPENSHIFT_CLUSTER",
+  "openshift_version": "$OPENSHIFT_VERSION",
+  "ocp_release_image": "$OCP_RELEASE_IMAGE",
+  "base_dns_domain": "$OPENSHIFT_DOMAIN",
+  "hyperthreading": "all",
+  "user_managed_networking": true,
+  "vip_dhcp_allocation": false,
+  "high_availability_mode": "None",
+  "hosts": [],
+  "ssh_public_key": "$SSH_KEY_LOCAL",
+  "pull_secret": "$PULL_SECRET",
+  "network_type": "OVNKubernetes"
+}

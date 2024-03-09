@@ -47,6 +47,10 @@ openshift-agent-installer: ##      configure and run podman agent configuration 
 openshift-coreos-ign-installer: ## configure and run podman agent configuration for ignition-based installer
 	@scripts/sno-installer.sh "$(OPENSHIFT_VERSION)" "$(SSH_KEY_LOCAL)" "$(PULL_SECRET)" "$(OPENSHIFT_HOSTNAME)" "$(OPENSHIFT_CLUSTER)" "$(OPENSHIFT_DOMAIN)" "$(IP)" ign
 
+.PHONY: openshift-ai-installer
+openshift-ai-installer:
+	@scripts/openshift-ai-deployment.sh $(OPENSHIFT_VERSION) $(SSH_KEY_LOCAL) $(PULL_SECRET) $(OPENSHIFT_HOSTNAME) $(OPENSHIFT_CLUSTER) $(OPENSHIFT_DOMAIN) $(IP)
+
 .PHONY: monitor-installation
 monitor-installation:
 	@openshift-install --dir=ocp agent wait-for bootstrap-complete
